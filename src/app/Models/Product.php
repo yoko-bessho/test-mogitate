@@ -20,6 +20,11 @@ class Product extends Model
         'season_id',
     ];
 
+    public function productSeasons()
+    {
+        return $this->hasMany(ProductSeason::class);
+    }
+
     public function seasons()
     {
         return $this->belongsToMany(Season::class);

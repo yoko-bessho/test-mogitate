@@ -1,0 +1,75 @@
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  width: 80%;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+}
+.search-section {
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 80%;
+  margin: 10px;
+}
+
+.sort-section {
+  align-items: center;
+  margin-left: 10px;
+}
+
+.sort-select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.card-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* components/image-card.blade.phpのstyle */
+.product-card {
+    width: 360px;
+    margin: 20px auto;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card__img img {
+  width: 100%;
+}
+
+.card__content {
+  padding: 15px 25px;
+}
+
+.card__content-tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
