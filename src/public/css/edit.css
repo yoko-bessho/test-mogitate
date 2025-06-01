@@ -1,0 +1,100 @@
+.edit-container {
+    background:#fafafa;
+    min-height:100vh;
+    padding:3rem 0;
+}
+
+.edit-container__inner {
+    max-width:900px;
+    margin:auto;
+}
+
+.detail {
+    color:#2196f3;
+    text-decoration:underline;
+    margin-bottom:1rem;
+}
+
+.edit-form {
+    background:#fff;
+    padding:2rem 2.5rem;
+    border-radius:10px;
+}
+
+.form__inner {
+    display:flex;
+    gap:2rem;
+    flex-wrap:wrap;
+}
+
+.image-file {
+    flex:1;
+    min-width:270px;
+}
+
+.select-file__label {
+    display:block;
+    margin-bottom:0.5rem;
+}
+
+.select-file__input {
+    margin-bottom:0.5rem;
+}
+
+.error-massage {
+    color:#f44336;
+    font-size:0.97rem;
+}
+
+.form-input {
+  width:100%;
+  padding:0.5em;
+  margin-top:0.3em;
+}
+
+.product-information {
+    flex:2;
+    min-width:320px;
+}
+.form-groupe {
+  margin-bottom:1.2rem;
+}
+
+.seasons-checkbox {
+    margin-right:1.5em;
+}
+
+.product-description {
+    margin:2rem 0 1.2rem 0;
+}
+
+.product-description__textarea {
+    width:100%;
+    padding:0.6em;
+    margin-top:0.3em;
+}
+
+.form-button {
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    margin-top:2rem;
+}
+
+.back-button {
+    background:#e0e0e0;
+    color:#333;
+    padding:0.9em 3em;
+    border-radius:5px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.edit-button__submit {
+    background:#ffd600;
+    color:#222;
+    font-weight:bold;
+    padding:0.9em 3em;
+    border:none;
+    border-radius:5px;
+}
