@@ -92,7 +92,7 @@
 
             <!-- ボタン -->
             <div class="form-button">
-                <a class="back-button" href="#">戻る</a>
+                <a class="back-button" href="/products">戻る</a>
                 <button class="edit-button__submit" type="submit">変更を保存</button>
             </div>
         </form>
