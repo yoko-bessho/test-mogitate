@@ -1,5 +1,8 @@
+@props(['label', 'href'])
+
+
 <div class="button link-button">
-    <a href=""  >+ 商品を追加</a>
+    <a href="{{ $href }}"  >+ 商品を追加</a>
 </div>
 
 <style>

@@ -9,7 +9,7 @@
 <div class="products-index">
     <div class="page-header">
         <h2 class="page-title">商品一覧</h2>
-        <x-link-button/>
+        <x-link-button href="/products/register" />
     </div>
 
     <div class="search-container">
