@@ -18,7 +18,8 @@
                     <x-image-card
                     :src="asset($product->image)"
                     :alt="$product->name"
-                    :name="$product->name" :price="$product->price"/>
+                    :name="$product->name"
+                    :price="$product->price"/>
                     <label class="select-file__label">ファイルを選択</label>
                     <input
                     class="select-file__input" type="file"
@@ -39,7 +40,9 @@
                         type="text"
                         name="name"
                         id="name"
-                        placeholder="商品名を入力">
+                        placeholder="商品名を入力"
+                        value="{{ old('name', $product->name) }}">
+                        {{-- ここにバリデーションエラーがあれば下記を表示 --}}
                         <div class="error-massage">商品名を入力してください</div>
                     </div>
                     <div class="form-groupe">
@@ -49,7 +52,8 @@
                         type="number"
                         name="price"
                         id="price"
-                        placeholder="値段を入力">
+                        placeholder="値段を入力"
+                        value="{{ old('price', $product->price) }}">
                         <div class="error-massage">
                             値段を入力してください<br>
                             数値で入力してください<br>
@@ -59,13 +63,13 @@
                     <div class="form-groupe">
                         <label>季節</label><br>
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season" value="1">春</label>
+                          <input type="checkbox" name="season_id[]" value="1" {{ in_array(1, $productSeasonIds) ? 'checked' : '' }}>春</label>
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season" value="2">夏</label>
+                          <input type="checkbox" name="season_id[]" value="2" {{ in_array(2, $productSeasonIds) ? 'checked' : '' }}>夏</label>
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season" value="3">秋</label>
+                          <input type="checkbox" name="season_id[]" value="3" {{ in_array(3, $productSeasonIds) ? 'checked' : '' }}>秋</label>
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season" value="4">冬</label>
+                          <input type="checkbox" name="season_id[]" value="4" {{ in_array(4, $productSeasonIds) ? 'checked' : '' }}>冬</label>
                         <div class="error-message">季節を選択してください</div>
                     </div>
                 </div>
@@ -78,6 +82,7 @@
                 id="description"
                 rows="4"
                 placeholder="商品の説明を入力">
+                {{ old('description', $product->description) }}
                 </textarea>
                 <div class="error-message" >
                     商品説明を入力してください<br>
