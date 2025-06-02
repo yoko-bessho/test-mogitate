@@ -15,6 +15,10 @@
             <div class="form__inner">
                 <!-- 左カラム：画像・ファイル選択 -->
                 <div class="image-file">
+                    <x-image-card
+                    :src="asset($product->image)"
+                    :alt="$product->name"
+                    :name="$product->name" :price="$product->price"/>
                     <label class="select-file__label">ファイルを選択</label>
                     <input
                     class="select-file__input" type="file"

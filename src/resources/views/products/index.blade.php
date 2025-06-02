@@ -36,10 +36,13 @@
         </div>
 
         <div class="card-container">
+
             @foreach ($products as $product)
+                <a href="/products/{{ $product->id }}/update" class="card-link">
                 <x-image-card
-                :src="$product->image"
+                :src="asset($product->image)"
                 :alt="$product->name" :name="$product->name" :price="$product->price" />
+                </a>
             @endforeach
         </div>
     </div>

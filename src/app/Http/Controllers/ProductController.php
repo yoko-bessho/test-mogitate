@@ -25,8 +25,12 @@ class ProductController extends Controller
         return view('products/create');
     }
 
-    // public function edit()
-    // {
-    //     return view('products/edit');
-    // }
+    public function edit($id)
+    {
+        // dd($id);
+        $product = Product::find($id);
+        $seasons = Season::all();
+        $productSeason = $product->seasons;
+        return view('products.edit', compact('product', 'seasons', 'productSeason'));
+    }
 }
