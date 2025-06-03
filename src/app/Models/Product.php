@@ -16,7 +16,7 @@ class Product extends Model
         'name',
         'price',
         'image',
-        'descreprion',
+        'description',
         'season_id',
     ];
 

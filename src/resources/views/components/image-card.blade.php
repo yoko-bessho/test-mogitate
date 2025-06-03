@@ -1,4 +1,3 @@
-
 @props(['src', 'alt', 'name', 'price',])
 
 <div class="product-card">

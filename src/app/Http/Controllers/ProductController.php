@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
 use App\Models\ProductSeason;
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\SeasonRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -24,6 +27,21 @@ class ProductController extends Controller
     {
         return view('products/create');
     }
+
+
+    public function store(ProductRequest $request)
+    {
+        $productData = $request->only(['name', 'price', 'description', 'image']);
+        $productData['image'] = $request->file('image')->store('fruits-img', 'public');
+        $product = Product::create($productData);
+        $seasons = $request->input('seasons', []);
+        $product->seasons()->sync($seasons);
+        
+        return view('products/create');
+    }
+
+
+
 
     public function edit($id)
     {

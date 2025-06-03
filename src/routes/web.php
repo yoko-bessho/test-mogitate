@@ -19,7 +19,10 @@ Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('products/register', [ProductController::class, 'create']);
 
+Route::post('products/register', [ProductController::class, 'store']);
+
 // Route::get('products/edit', [ProductController::class, 'edit']);
 
 
 Route::get('products/{id}/update', [ProductController::class, 'edit']);
+

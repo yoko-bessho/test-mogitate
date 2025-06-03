@@ -14,7 +14,7 @@
 
     <div class="search-container">
         <div class="search-section">
-            <form action="" method="GET">
+            <form action="/products/register" method="GET">
             @csrf
                 <input
                 class="search-input"
