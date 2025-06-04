@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\Season;
 use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
-use App\Http\Requests\SeasonRequest;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -15,13 +14,22 @@ class ProductController extends Controller
 {
     public function index()
     {
-        {
-            $products = Product::with('seasons')->paginate(6);
-            $seasons = Season::all();
+        $products = Product::with('seasons')->paginate(6);
+        $seasons = Season::all();
 
-            return view('products/index', compact('products', 'seasons'));
-        }
+        return view('products/index', compact('products', 'seasons'));
     }
+
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        $seasons = Season::all();
+        $productSeasonIds = $product->seasons->pluck('id')->toArray();
+
+        return view('products.edit', compact('product', 'seasons', 'productSeasonIds'));
+
+    }
+
 
     public function create()
     {
@@ -36,14 +44,12 @@ class ProductController extends Controller
         $product = Product::create($productData);
         $seasons = $request->input('seasons', []);
         $product->seasons()->sync($seasons);
-        
-        return view('products/create');
+
+        return redirect()->route('products.index');
     }
 
 
-
-
-    public function edit($id)
+    public function update(ProductRequest $request, $id)
     {
         $product = Product::find($id);
         $seasons = Season::all();
