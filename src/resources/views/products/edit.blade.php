@@ -7,11 +7,11 @@
 @section('content')
 <div class="edit-container">
     <div class="edit-container__inner">
-        <a class="detail" href="#">商品一覧</a> &gt; キウイ
+        <a class="detail" href="#">商品一覧</a> &gt;{{ $product->name }}
 
-        <form class="edit-form" method="POST" action="#" enctype="multipart/form-data">
-            {{-- @csrf --}}
-
+        <form class="edit-form" method="POST" action="/products/{{ $product->id }}/update" enctype="multipart/form-data">
+            @method('PATCH')
+            @csrf
             <div class="form__inner">
                 <!-- 左カラム：画像・ファイル選択 -->
                 <div class="image-file">
@@ -24,6 +24,7 @@
                     <input
                     class="select-file__input" type="file"
                     name="image">
+                    <input type="hidden" name="current_image" value="{{ $product->image }}">
                     {{-- ここにバリデーションエラーがあれば下記を表示 --}}
                     <div class="error-massage">商品画像を登録してください</div>
                     <div class="error-massage">
@@ -49,7 +50,7 @@
                         <label for="price">値段</label><br>
                         <input
                         class="form-input"
-                        type="number"
+                        type="text"
                         name="price"
                         id="price"
                         placeholder="値段を入力"

@@ -20,16 +20,6 @@ class ProductController extends Controller
         return view('products/index', compact('products', 'seasons'));
     }
 
-    public function edit($id)
-    {
-        $product = Product::find($id);
-        $seasons = Season::all();
-        $productSeasonIds = $product->seasons->pluck('id')->toArray();
-
-        return view('products.edit', compact('product', 'seasons', 'productSeasonIds'));
-
-    }
-
 
     public function create()
     {
@@ -49,12 +39,34 @@ class ProductController extends Controller
     }
 
 
-    public function update(ProductRequest $request, $id)
+    public function edit($id)
     {
         $product = Product::find($id);
         $seasons = Season::all();
         $productSeasonIds = $product->seasons->pluck('id')->toArray();
-        // dd($product);
+
         return view('products.edit', compact('product', 'seasons', 'productSeasonIds'));
+
     }
+
+
+    public function update(ProductRequest $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->save();
+        if ($request->hasFile('image')) {
+            $product->image = $request->file('image')->store('fruits-img', 'public');
+        } else {
+            $product->image = $request->input('current_image');
+        }
+        // 中間テーブル更新
+        $product->seasons()->sync($request->input('season_id', []));
+
+        return redirect()->route('products.index');
+    }
+
 }

@@ -21,7 +21,8 @@ Route::get('products/register', [ProductController::class, 'create']);
 
 Route::post('products/register', [ProductController::class, 'store']);
 
-Route::get('products/{productId}/edit', [ProductController::class, 'edit']);
+Route::get('products/{productId}', [ProductController::class, 'edit']);
 
-Route::get('products/{id}/update', [ProductController::class, 'update']);
+Route::patch('products/{productId}/update', [ProductController::class, 'update']);
+
 
