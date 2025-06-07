@@ -13,10 +13,10 @@
             @method('PATCH')
             @csrf
             <div class="form__inner">
-                <!-- 左カラム：画像・ファイル選択 -->
+                <!-- 左カラム：画像・ファイル選択・商品説明 -->
                 <div class="image-file">
                     <x-image-card
-                    :src="asset($product->image)"
+                    :src="'/storage/' . $product->image"
                     :alt="$product->name"
                     :name="$product->name"
                     :price="$product->price"/>
@@ -24,12 +24,16 @@
                     <input
                     class="select-file__input" type="file"
                     name="image">
-                    <input type="hidden" name="current_image" value="{{ $product->image }}">
-                    {{-- ここにバリデーションエラーがあれば下記を表示 --}}
-                    <div class="error-massage">商品画像を登録してください</div>
-                    <div class="error-massage">
-                        「.png」または「.jpeg」形式でアップロードしてください
-                    </div>
+                    <input
+                    type="hidden"
+                    name="current_image"
+                    value="{{  old('image', $product->image) }}">
+                    @if ($product->image)
+                    <span class="current-image">{{ basename($product->image) }}</span>
+                    @endif
+                    @error('image')
+                    <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- 右カラム：商品名・値段・季節 -->
@@ -43,9 +47,11 @@
                         id="name"
                         placeholder="商品名を入力"
                         value="{{ old('name', $product->name) }}">
-                        {{-- ここにバリデーションエラーがあれば下記を表示 --}}
-                        <div class="error-massage">商品名を入力してください</div>
+                        @error('name')
+                        <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="form-groupe">
                         <label for="price">値段</label><br>
                         <input
@@ -55,28 +61,33 @@
                         id="price"
                         placeholder="値段を入力"
                         value="{{ old('price', $product->price) }}">
-                        <div class="error-massage">
-                            値段を入力してください<br>
-                            数値で入力してください<br>
-                            0-10000円以内で入力してください
-                        </div>
+                        @error('price')
+                        <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="form-groupe">
                         <label>季節</label><br>
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season_id[]" value="1" {{ in_array(1, $productSeasonIds) ? 'checked' : '' }}>春</label>
+                        <input type="checkbox" name="season_id[]" value="1" {{ in_array(1, $productSeasonIds) ? 'checked' : '' }}>春</label>
+
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season_id[]" value="2" {{ in_array(2, $productSeasonIds) ? 'checked' : '' }}>夏</label>
+                        <input type="checkbox" name="season_id[]" value="2" {{ in_array(2, $productSeasonIds) ? 'checked' : '' }}>夏</label>
+
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season_id[]" value="3" {{ in_array(3, $productSeasonIds) ? 'checked' : '' }}>秋</label>
+                        <input type="checkbox" name="season_id[]" value="3" {{ in_array(3, $productSeasonIds) ? 'checked' : '' }}>秋</label>
+
                         <label class="seasons-checkbox">
-                          <input type="checkbox" name="season_id[]" value="4" {{ in_array(4, $productSeasonIds) ? 'checked' : '' }}>冬</label>
-                        <div class="error-message">季節を選択してください</div>
+                        <input type="checkbox" name="season_id[]" value="4" {{ in_array(4, $productSeasonIds) ? 'checked' : '' }}>冬</label>
+
+
+                        @error('seasons')
+                        <span class="error-message">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
             </div>
 
-            <!-- 商品説明 -->
             <div class="product-description">
                 <label for="description">商品説明</label><br>
                 <textarea class="product-description__textarea" name="description"
@@ -85,13 +96,11 @@
                 placeholder="商品の説明を入力">
                 {{ old('description', $product->description) }}
                 </textarea>
-                <div class="error-message" >
-                    商品説明を入力してください<br>
-                    120文字以内で入力してください
-                </div>
+                @error('description')
+                <p class="error-message">{{-- $message --}}</p>
+                @enderror
             </div>
 
-            <!-- ボタン -->
             <div class="form-button">
                 <a class="back-button" href="/products">戻る</a>
                 <button class="edit-button__submit" type="submit">変更を保存</button>

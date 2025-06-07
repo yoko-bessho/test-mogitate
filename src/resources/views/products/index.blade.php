@@ -40,7 +40,7 @@
             @foreach ($products as $product)
                 <a href="/products/{{ $product->id }}" class="card-link">
                 <x-image-card
-                :src="asset($product->image)"
+                :src="'/storage/' . $product->image"
                 :alt="$product->name" :name="$product->name" :price="$product->price" />
                 </a>
             @endforeach

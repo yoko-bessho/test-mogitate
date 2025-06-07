@@ -29,9 +29,15 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $productData = $request->only(['name', 'price', 'description', 'image']);
-        $productData['image'] = $request->file('image')->store('fruits-img', 'public');
+        $imagePath = $request->file('image')->store('fruits-img', 'public');
+        $imagePath = str_replace('public/', '', $imagePath);
+
+        $productData = $request->only(['name', 'price', 'description']);
+        $productData['image'] = $imagePath;
+
+
         $product = Product::create($productData);
+
         $seasons = $request->input('seasons', []);
         $product->seasons()->sync($seasons);
 
@@ -50,20 +56,21 @@ class ProductController extends Controller
     }
 
 
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        // dd($request->all());
         $product = Product::findOrFail($id);
 
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->description = $request->input('description');
-        $product->save();
-        if ($request->hasFile('image')) {
-            $product->image = $request->file('image')->store('fruits-img', 'public');
-        } else {
-            $product->image = $request->input('current_image');
+        $productData = $request->only(['name', 'price', 'description']);
+
+        if($request->hasFile('image')) {
+            $productData['image'] = $request->file('image')->store('fruits-img', 'public');
+        }else {
+            $productData['image'] = $request->input
+            ('current_image');
         }
-        // 中間テーブル更新
+        $product->update($productData);
+
         $product->seasons()->sync($request->input('season_id', []));
 
         return redirect()->route('products.index');

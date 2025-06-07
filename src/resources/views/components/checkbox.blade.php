@@ -9,6 +9,5 @@
       <input type="checkbox" name="seasons[]" value="3" {{ in_array(3, (array)$productSeasonIds) ? 'checked' : '' }}>秋</label>
     <label class="seasons-checkbox">
       <input type="checkbox" name="seasons[]" value="4" {{ in_array(4, (array)$productSeasonIds) ? 'checked' : '' }}>冬</label>
-    <div class="error-message">季節を選択してください</div>
 </div>
 

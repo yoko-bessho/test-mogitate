@@ -10,26 +10,33 @@
     <form class="product-form" action="/products/register" enctype="multipart/form-data" method="POST">
         @csrf
         <h3 class="page-title">商品登録</h3>
+
         <div class="form-group">
             <label class="form-label" for="name">
                 商品名 <span class="required">必須</span>
             </label>
-            <input class="form-input" type="text" name="name"  value="{{ old('name')}}">
-            <div class="error-message">エラー表示</div>
-            <!-- @error('name')
-                <span class="error-message">{{ $message }}</span>
-            @enderror -->
+            <input
+            class="form-input"
+            type="text"
+            name="name"
+            value="{{ old('name')}}">
+            @error('name')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         
         <div class="form-group">
             <label class="form-label" for="price">
                 値段 <span class="required">必須</span>
             </label>
-            <input class="form-input" type="text"  name="price"  value="{{ old('price') }}">
-            <div class="error-message">エラー表示</div>
-            <!-- @error('price')
-                <span class="error-message">{{ $message }}</span>
-            @enderror -->
+            <input
+            class="form-input"
+            type="text"
+            name="price"
+            value="{{ old('price') }}">
+            @error('price')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         
         <div class="form-group">
@@ -37,13 +44,12 @@
                 商品画像 <span class="required">必須</span>
             </label>
             <input
-            class="select-file__input" type="file"
+            class="select-file__input"
+            type="file"
             name="image" >
-
-            <div class="error-message">エラー表示</div>
-            <!-- @error('image')
-                <span class="error-message">{{ $message }}</span>
-            @enderror -->
+            @error('image')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         
         <div class="form-group">
@@ -55,10 +61,9 @@
                 productSeasonIds="old('season_id')"
                 />
             </div>
-            <div class="error-message">エラー表示</div>
-            <!-- @error('seasons')
+            @error('seasons')
                 <span class="error-message">{{ $message }}</span>
-            @enderror -->
+            @enderror
         </div>
         
         <div class="form-group">
@@ -66,10 +71,9 @@
                 商品説明 <span class="required">必須</span>
             </label>
             <textarea class="form-textarea" name="description" rows="5">{{ old('description') }}</textarea>
-            <div class="error-message">エラー表示</div>
-            <!-- @error('description')
-                <span class="error-message">{{-- $message --}}</span>
-            @enderror -->
+            @error('description')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         
         <div class="form-actions">
