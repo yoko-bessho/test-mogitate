@@ -62,7 +62,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($productId);
 
         $productData = $request->only(['name', 'price', 'description']);
-
         if ($request->hasfile('image')) {
             if ($product->image) {
                 \Storage::disk('public')->delete($product->image);
@@ -72,9 +71,9 @@ class ProductController extends Controller
             $productData['image'] = $request->input('current_image');
         }
 
-        $product->update($productData);
-
         $product->seasons()->sync($request->input('season_id', []));
+        
+        $product->update($productData);
 
         return redirect()->route('products.index');
     }

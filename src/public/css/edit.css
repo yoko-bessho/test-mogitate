@@ -9,6 +9,10 @@
     margin:auto;
 }
 
+.form-wrapper {
+    display: flex;
+}
+
 .detail {
     color:#2196f3;
     text-decoration:underline;
@@ -79,6 +83,7 @@
     justify-content:center;
     gap:2rem;
     margin-top:2rem;
+    width: 50%;
 }
 
 .back-button {
@@ -98,3 +103,16 @@
     border:none;
     border-radius:5px;
 }
+
+.delete-form {
+    margin-top: 60%;
+}
+.delete-button {
+    justify-content: flex-start;
+    border-color: red;
+    background-color: #fff;
+    border-radius: 20%;
+    position: relative;
+    left: -120px;
+    top: -25px;
+    }

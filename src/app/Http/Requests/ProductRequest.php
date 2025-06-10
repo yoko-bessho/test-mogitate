@@ -54,6 +54,10 @@ class ProductRequest extends FormRequest
                 'array',
                 'required',
             ],
+            'season_id.*' => [
+                'exists:seasons,id'
+            ],
+
         ];
     }
 
