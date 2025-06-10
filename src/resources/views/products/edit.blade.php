@@ -9,6 +9,9 @@
     <div class="edit-container__inner">
         <a class="detail" href="#">商品一覧</a> &gt;{{ $product->name }}
 
+        <form class="edit-form" method="POST" action="/products/{{ $product->id }}/update" enctype="multipart/form-data">
+        @method('PATCH')
+        @csrf
         <div class="form__inner">
             <!-- 左カラム：画像・ファイル選択・商品説明 -->
             <div class="image-file">
@@ -24,7 +27,7 @@
                 <input
                 type="hidden"
                 name="current_image"
-                value="{{  old('image', $product->image) }}">
+                value="{{ $product->image }}">
                 @if ($product->image)
                 <span class="current-image">{{ basename($product->image) }}</span>
                 @endif
@@ -97,9 +100,7 @@
         </div>
 
         <div class="form-button">
-        <form class="edit-form" method="POST" action="/products/{{ $product->id }}/update" enctype="multipart/form-data">
-            @method('PATCH')
-            @csrf
+       
             <a class="back-button" href="/products">戻る</a>
             <button class="edit-button__submit" type="submit">変更を保存</button>
         </form>

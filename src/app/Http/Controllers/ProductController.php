@@ -10,6 +10,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class ProductController extends Controller
 {
     public function index()
@@ -45,9 +46,9 @@ class ProductController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($productId)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($productId);
         $seasons = Season::all();
         $productSeasonIds = $product->seasons->pluck('id')->toArray();
 
@@ -56,19 +57,21 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $productId)
     {
-        // dd($request->all());
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($productId);
 
         $productData = $request->only(['name', 'price', 'description']);
 
-        if($request->hasFile('image')) {
+        if ($request->hasfile('image')) {
+            if ($product->image) {
+                \Storage::disk('public')->delete($product->image);
+            }
             $productData['image'] = $request->file('image')->store('fruits-img', 'public');
-        }else {
-            $productData['image'] = $request->input
-            ('current_image');
+        } else {
+            $productData['image'] = $request->input('current_image');
         }
+
         $product->update($productData);
 
         $product->seasons()->sync($request->input('season_id', []));
