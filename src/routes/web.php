@@ -17,12 +17,13 @@ use App\Models\Product;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::get('products/register', [ProductController::class, 'create']);
+Route::get('/products/register', [ProductController::class, 'create']);
 
-Route::post('products/register', [ProductController::class, 'store']);
+Route::post('/products/register', [ProductController::class, 'store']);
 
-Route::get('products/{productId}', [ProductController::class, 'edit']);
+Route::get('/products/{productId}', [ProductController::class, 'edit']);
 
-Route::patch('products/{productId}/update', [ProductController::class, 'update']);
+Route::patch('/products/{productId}/update', [ProductController::class, 'update']);
 
-
+Route::delete('/products/{productId}/delete',
+[ProductController::class, 'destroy']);
