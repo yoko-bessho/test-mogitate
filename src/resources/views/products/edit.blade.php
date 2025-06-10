@@ -95,7 +95,7 @@
                     {{ old('description', $product->description) }}
                     </textarea>
                     @error('description')
-                    <p class="error-message">{{-- $message --}}</p>
+                    <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
 

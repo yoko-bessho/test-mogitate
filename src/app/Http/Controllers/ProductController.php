@@ -57,7 +57,7 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $productId)
+    public function update(ProductRequest $request, $productId)
     {
         $product = Product::findOrFail($productId);
 
@@ -72,7 +72,7 @@ class ProductController extends Controller
         }
 
         $product->seasons()->sync($request->input('season_id', []));
-        
+
         $product->update($productData);
 
         return redirect()->route('products.index');

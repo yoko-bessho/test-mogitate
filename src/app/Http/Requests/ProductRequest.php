@@ -21,6 +21,7 @@ class ProductRequest extends FormRequest
      *
      * @return array
      */
+
     protected function prepareForValidation()
     {
         $this->merge([
@@ -28,38 +29,54 @@ class ProductRequest extends FormRequest
         ]);
     }
 
+
+
     public function rules()
     {
-        return [
+        $rules = [
             'name' => [
                 'required',
                 'string',
-                ],
+            ],
             'price' => [
                 'required',
                 'integer',
                 'between:0,10000',
-                ],
-            'image' => [
-                'required',
-                'image',
-                'mimes:jpeg,png',
-                ],
+            ],
             'description' => [
                 'required',
                 'string',
                 'max:120',
-                ],
-            'seasons' => [
-                'array',
+            ],
+            'season_id' => [
                 'required',
+                'array',
             ],
             'season_id.*' => [
-                'exists:seasons,id'
+                'exists:seasons,id',
             ],
-
         ];
+    
+        if ($this->isMethod('post')) {
+            // 新規作成時は画像必須
+            $rules['image'] = [
+                'required',
+                'image',
+                'mimes:jpeg,png',
+            ];
+        } elseif ($this->isMethod('put') || $this->isMethod('patch')) {
+            // 更新時は画像はなくてもOK（nullable）
+            $rules['image'] = [
+                'nullable',
+                'image',
+                'mimes:jpeg,png',
+            ];
+        }
+    
+        return $rules;
     }
+    
+
 
     public function messages()
     {
