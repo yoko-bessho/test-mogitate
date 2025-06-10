@@ -49,7 +49,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
+}
+
+.card-link {
+    text-decoration: none;
+    color: #333;
 }
 
 /* components/image-card.blade.phpのstyle */
@@ -73,3 +78,7 @@
   align-items: center;
 }
 
+.card__content-tag-item {
+    text-decoration: none;
+
+}

@@ -77,7 +77,7 @@
         </div>
         
         <div class="form-actions">
-            <a href="" class="button button-back">戻る</a>
+            <a href="/products" class="button button-back">戻る</a>
             <button type="submit" class="button button-submit">登録</button>
         </div>
     </form>

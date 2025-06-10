@@ -46,5 +46,8 @@
             @endforeach
         </div>
     </div>
+    <div>
+    {{ $products->links('vendor.pagination.product-pagenate') }}
+    </div>
 </div>
 @endsection

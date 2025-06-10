@@ -54,3 +54,19 @@
     margin-top: 0.25rem;
     display: block;
 }
+
+.pagination {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination a {
+    color: #8B7969;
+    text-decoration: none;
+}
+
+.pagination__link {
+    text-decoration: none;
+}
