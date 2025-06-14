@@ -2,7 +2,7 @@
 .page-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
 }
 
 .page-title {
@@ -29,13 +29,13 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   width: 80%;
-  margin: 10px;
+  margin: 20px;
   height: 50px;
 }
 
 .sort-section {
   align-items: center;
-  margin-left: 10px;
+  margin: 20px;
 }
 
 .price-order {

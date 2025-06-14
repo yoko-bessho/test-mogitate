@@ -47,7 +47,7 @@
                         $resetLabel = '安い順に表示';
                     }
                 @endphp
-                    <input class="sort-clear__button" type="submit" name="reset_search" value="{{ $resetLabel }}     ✖️">
+                    <input class="sort-clear__button" type="submit" name="reset_search" value="{{ $resetLabel }}         ✖️">
                 </div>
             </form>
         </div>
