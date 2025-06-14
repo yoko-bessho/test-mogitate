@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
-use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
-use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class ProductController extends Controller
 {
