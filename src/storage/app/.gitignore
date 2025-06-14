@@ -1,3 +1,5 @@
 *
 !public/
 !.gitignore
+!fruits-img/
+!fruits-img/**
