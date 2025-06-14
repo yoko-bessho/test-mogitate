@@ -7,9 +7,9 @@ use App\Models\Product;
 use App\Models\Season;
 use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
+use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Support\Facades\Storage;
-
-
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class ProductController extends Controller
 {
@@ -17,14 +17,34 @@ class ProductController extends Controller
     {
         $products = Product::with('seasons')->paginate(6);
         $seasons = Season::all();
-
         return view('products/index', compact('products', 'seasons'));
     }
 
 
+    public function search(Request $request)
+    {
+        $query = Product::with('seasons')
+            ->keywordSearch($request->keyword);
+
+        if ($request->has('reset_search')) {
+            return redirect()->route('products.index');
+        }
+
+        if ($request->price === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->price === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        }
+
+        $products = $query->paginate(6)->appends($request->all());
+
+        // dd($request->all());
+        return view('products.index', compact('products'));
+    }
+
     public function create()
     {
-        return view('products/create');
+        return view('products.create');
     }
 
 
@@ -78,11 +98,15 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
+
     public function destroy($productId)
     {
         Product::find($productId)->delete();
         return redirect()->route('products.index');
     }
+
+
+
 
 }
 

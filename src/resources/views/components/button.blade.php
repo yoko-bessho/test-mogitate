@@ -1,8 +1,8 @@
-@props(['label', 'href'])
+@props(['label'])
 
-<a href="" class="button button-primary">
-    {{ $label}}
-</a>
+<button class="button button-primary" type="submit">
+    {{ $label }}
+</button>
 
 <style>
 .button-primary {
@@ -10,5 +10,6 @@
     color: #333;
     width: 80%;
     margin: 10px;
+    text-align: center;
 }
 </style>
