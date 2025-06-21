@@ -57,7 +57,7 @@
             @foreach ($products as $product)
                 <a href="{{ route('products.edit', $product->id) }}" class="card-link">
                 <x-image-card
-                :src="asset($product->image)"
+                :src="Storage::url($product->image)"
                 :alt="$product->name" :name="$product->name" :price="$product->price" />
                 </a>
             @endforeach

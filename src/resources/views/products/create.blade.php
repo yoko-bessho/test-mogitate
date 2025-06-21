@@ -46,7 +46,8 @@
             <input
             class="select-file__input"
             type="file"
-            name="image" >
+            name="image"
+            id="image" >
             @error('image')
                 <p class="error-message">{{ $message }}</p>
             @enderror

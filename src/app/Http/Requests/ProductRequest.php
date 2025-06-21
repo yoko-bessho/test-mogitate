@@ -48,11 +48,11 @@ class ProductRequest extends FormRequest
                 'string',
                 'max:120',
             ],
-            'season_id' => [
+            'seasons' => [
                 'required',
                 'array',
             ],
-            'season_id.*' => [
+            'seasons.*' => [
                 'exists:seasons,id',
             ],
         ];
